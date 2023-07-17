@@ -1,11 +1,11 @@
-<?php
+<?html
 ob_start();
 
 header('Content-type: text/html; charset=utf-8');
 date_default_timezone_set('Europe/Paris');
 
-include("../configuration/connect.php");
-require ("../connexiondiscord/discord.php");
+include("../configuration/connect.html");
+require ("../connexiondiscord/discord.html");
 
 if (!isset($_SESSION)) {
     session_start();
@@ -34,9 +34,9 @@ if (isset($_SESSION['user'])) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>LeBonCoin | GrandParisRP</title>
+  <title>LeBonCoin | HOLDEN</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="Site LeBonCoin du serveur grandparisrp" name="description">
+  <meta content="Site LeBonCoin du serveur grandrp" name="description">
 
   <!-- Favicons -->
   <link href="../assets/img/flavicon.png" rel="icon">
@@ -90,7 +90,7 @@ if (isset($_SESSION['user'])) {
 	    "message": "Notre site Web utilise des cookies pour vous assurer une meilleure expérience. ",
 	    "dismiss": "Accepter",
 	    "link": "En savoir plus",
-	    "href": "https://leboncoin-grandparisrp.store"
+	    "href": "https://leboncoin-grandrp.store"
 	  }
 	})});
 	</script>

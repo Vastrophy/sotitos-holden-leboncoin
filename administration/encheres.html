@@ -1,7 +1,7 @@
-<?php
+<?html
 
-include "../includes/head.php";
-include "../includes/header.php";
+include "../includes/head.html";
+include "../includes/header.html";
 
 if ($rank < 4) {
     header('Location: ../account/');
@@ -30,7 +30,7 @@ if (isset($_POST['ajout'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Enchère Effectué !", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=encheres.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=encheres.html">';
     }
 }
 
@@ -44,7 +44,7 @@ if (isset($_POST['delete'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Vous avez supprimer les enchérisseurs", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=encheres.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=encheres.html">';
     }
 }
 
@@ -312,7 +312,7 @@ if (isset($_POST['delete'])) {
   </thead>
   <tbody>
 <tr role="row" class="odd">
-                                        <?php
+                                        <?html
                                         $result = mysqli_query($con, "SELECT * FROM enchere") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
                                         $titre = $resultatInfos['TITRE'];
@@ -325,16 +325,16 @@ if (isset($_POST['delete'])) {
                                         
                                         ?>
                                         </td>
-                                        <td class="text-center"><b><font color=white><?php echo $titre; ?></font></b></td>
-                                        <td class="text-center"><b><font color=white><?php echo $departprix; ?></font></b></td>
-										<td class="text-center"><b><font color=white><?php echo $venteprix; ?></font></b></td>
-									    <td class="text-center"><b><font color=white><?php echo $description; ?></font></b></td>
-										<td class="text-center"><b><font color=white><?php echo $organisateur; ?></font></b></td>
-										<td class="text-center"><b><font color=white><?php echo $fin; ?></font></b></td>
-                                        <td class="text-center"><a class="btn btn-success" href="enchere-edit.php?id=<?php echo $resultatInfos['ID']; ?>">Edit</a>
+                                        <td class="text-center"><b><font color=white><?html echo $titre; ?></font></b></td>
+                                        <td class="text-center"><b><font color=white><?html echo $departprix; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?html echo $venteprix; ?></font></b></td>
+									    <td class="text-center"><b><font color=white><?html echo $description; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?html echo $organisateur; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?html echo $fin; ?></font></b></td>
+                                        <td class="text-center"><a class="btn btn-success" href="enchere-edit.html?id=<?html echo $resultatInfos['ID']; ?>">Edit</a>
                                         </td>
                                     </tr>
-									 <?php } ?>
+									 <?html } ?>
   </tbody>
 </table></center>
 	  
@@ -360,15 +360,15 @@ if (isset($_POST['delete'])) {
 					    <div class="form-group">
                         <label for="exampleFormControlSelect1">Organisateur:</label>
                         <select class="form-control" id="exampleFormControlSelect1" name="organisateur">
-						<?php
+						<?html
                                         $result = mysqli_query($con, "SELECT * FROM users") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
 										$name2 = $resultatInfos['USERNAME'];
 										$name1 = $resultatInfos['PRENOM'];
 										
                                         ?>
-                        <option value="<?php echo $name1; ?> <?php echo $name2; ?>"><?php echo $name1; ?> <?php echo $name2; ?></option>
-						<?php } ?>
+                        <option value="<?html echo $name1; ?> <?html echo $name2; ?>"><?html echo $name1; ?> <?html echo $name2; ?></option>
+						<?html } ?>
                         </select>
                         </div>
 						<label for="exampleFormControlSelect1">Titre de l'enchère:</label>
@@ -395,8 +395,8 @@ if (isset($_POST['delete'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

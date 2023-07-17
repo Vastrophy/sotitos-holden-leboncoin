@@ -1,7 +1,7 @@
-<?php
+<?html
 
-include "../includes/head.php";
-include "../includes/header.php";
+include "../includes/head.html";
+include "../includes/header.html";
 
 if ($rank < 4) {
     header('Location: ../account/');
@@ -14,7 +14,7 @@ if (isset($_GET['ban'])) {
     mysqli_query($con, "UPDATE `users` SET `STATUS` = '0' WHERE `ID` = '$id'") or die(mysqli_error($con));
 
     echo '<script>
-			window.history.replaceState("object or string", "Title", "membres.php");
+			window.history.replaceState("object or string", "Title", "membres.html");
 		</script>';
 
     echo '<script>
@@ -30,7 +30,7 @@ if (isset($_GET['unban'])) {
     mysqli_query($con, "UPDATE `users` SET `STATUS` = '1' WHERE `ID` = '$id'") or die(mysqli_error($con));
 
     echo '<script>
-			window.history.replaceState("object or string", "Title", "membres.php");
+			window.history.replaceState("object or string", "Title", "membres.html");
 		</script>';
 
     echo '<script>
@@ -69,7 +69,7 @@ if (isset($_GET['unban'])) {
   </thead>
   <tbody>
 <tr role="row" class="odd">
-                                        <?php
+                                        <?html
                                         $result = mysqli_query($con, "SELECT * FROM users ORDER BY `ID_CLIENT` ASC") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
                                         $id = $resultatInfos['ID'];
@@ -93,17 +93,17 @@ if (isset($_GET['unban'])) {
                                             $status = "<span class=\"badge badge-success\">Actif</span>";
                                         }
                                         ?>
-                                        <td class="sorting_1 text-center"><?php echo $resultatInfos['ID_CLIENT']; ?></td>
-                                        <td class="text-center"><?php echo $resultatInfos['PRENOM']; ?> <?php echo $resultatInfos['USERNAME']; ?></td>
-                                        <td class="text-center"><?php echo date("d-m-Y à H:i:s", $resultatInfos['DATE_INSCRIPTION']); ?>
+                                        <td class="sorting_1 text-center"><?html echo $resultatInfos['ID_CLIENT']; ?></td>
+                                        <td class="text-center"><?html echo $resultatInfos['PRENOM']; ?> <?html echo $resultatInfos['USERNAME']; ?></td>
+                                        <td class="text-center"><?html echo date("d-m-Y à H:i:s", $resultatInfos['DATE_INSCRIPTION']); ?>
     
                                         </td>
-                                        <td class="text-center"><?php echo $grade; ?></td>
-                                        <td class="text-center"><?php echo $status; ?></td>
-                                        <td class="text-center"><a class="btn btn-success" href="membres-edit.php?id=<?php echo $resultatInfos['ID']; ?>">Edit le client</a>
+                                        <td class="text-center"><?html echo $grade; ?></td>
+                                        <td class="text-center"><?html echo $status; ?></td>
+                                        <td class="text-center"><a class="btn btn-success" href="membres-edit.html?id=<?html echo $resultatInfos['ID']; ?>">Edit le client</a>
                                         </td>
                                     </tr>
-									 <?php } ?>
+									 <?html } ?>
   </tbody>
 </table></center>
 	  
@@ -120,8 +120,8 @@ if (isset($_GET['unban'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

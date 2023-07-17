@@ -1,7 +1,7 @@
-<?php
+<?html
 
-require '../includes/head.php';
-require '../includes/header.php';
+require '../includes/head.html';
+require '../includes/header.html';
 
 if (!isset($_SESSION['user'])) {
     header('Location: ../connexion/');
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user'])) {
 
 
 if (!isset($_GET['id'])) {
-    header('Location: annonces.php');
+    header('Location: annonces.html');
     exit();
 }
 
@@ -37,7 +37,7 @@ while ($userInfo = mysqli_fetch_array($result)) {
 
 
 if ($rank == 4 && $rank == 5) {
-    header('Location: annonces.php');
+    header('Location: annonces.html');
     exit();
 }
 
@@ -51,7 +51,7 @@ if (isset($_POST['vendu'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Suppresion enchère !", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=index.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=index.html">';
     
 }
 
@@ -112,7 +112,7 @@ if (isset($_POST['edit'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Modification faite :)", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=index.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=index.html">';
 }
 
 
@@ -126,7 +126,7 @@ if (isset($_POST['edit'])) {
       <header class="section-header">
 	  	  <center><img src='https://grandparisrp.cf/img/logo.png' width="110"></img></center>
         <h3>Edition LeBonCoin</h3>
-        <p>Edition d'une annonce LeBonCoin de Grand Paris RP</p>
+        <p>Edition d'une annonce LeBonCoin de Holden</p>
 		<br>
       </header>
       <div class="row">
@@ -136,7 +136,7 @@ if (isset($_POST['edit'])) {
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <center><h3 class="box-title m-b-0">Annonce: <?php echo $TITRE; ?></h3>
+            <center><h3 class="box-title m-b-0">Annonce: <?html echo $TITRE; ?></h3>
                         <p class="text-muted m-b-30">Remplissez le formulaire ci-dessous pour modifier l'annonce</p></center>
           </div>
         </div>
@@ -149,7 +149,7 @@ if (isset($_POST['edit'])) {
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">Titre de l'annonce</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" name="TITRE" value="<?php echo $TITRE; ?>"
+                                    <input class="form-control" type="text" name="TITRE" value="<?html echo $TITRE; ?>"
                                            id="example-text-input">
                                 </div>
                             </div>
@@ -157,7 +157,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Url de de l'image</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="URL" type="search" value="<?php echo $URL; ?>"
+                                    <input class="form-control" name="URL" type="search" value="<?html echo $URL; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -166,14 +166,14 @@ if (isset($_POST['edit'])) {
                                 <label for="example-search-input" class="col-2 col-form-label">Message de l'annonce</label>
                                 <div class="col-10">
                                     <textarea class="form-control" name="DESCRIPTION" type="search"
-                                           id="example-search-input"><?php echo $DESCRIPTION; ?></textarea>
+                                           id="example-search-input"><?html echo $DESCRIPTION; ?></textarea>
                                 </div>
                             </div>
 							
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Objet en vente:</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="OBJET" type="search" value="<?php echo $OBJET; ?>"
+                                    <input class="form-control" name="OBJET" type="search" value="<?html echo $OBJET; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -181,7 +181,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Prix de l'annonce:</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="VENTEPRIX" type="search" value="<?php echo $VENTEPRIX; ?>"
+                                    <input class="form-control" name="VENTEPRIX" type="search" value="<?html echo $VENTEPRIX; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -189,7 +189,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Téléphone:</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="TEL" type="search" value="<?php echo $TEL; ?>"
+                                    <input class="form-control" name="TEL" type="search" value="<?html echo $TEL; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -197,7 +197,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Mail discord:</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="DISCORDMAIL" type="search" value="<?php echo $DISCORDMAIL; ?>"
+                                    <input class="form-control" name="DISCORDMAIL" type="search" value="<?html echo $DISCORDMAIL; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -206,7 +206,7 @@ if (isset($_POST['edit'])) {
                                 <label for="example-password-input" class="col-2 col-form-label">Status De l'annonce</label>
                                 <div class="col-10">
                                     <select class="form-control" name="PUBLICATION">
-                                        <?php
+                                        <?html
                                         function selectedS($check, $PUBLICATION1)
                                         {
                                             if ($check == $PUBLICATION1) {
@@ -216,10 +216,10 @@ if (isset($_POST['edit'])) {
 
                                         ?>
 
-                                        <option value="1" <?php echo selectedS(1, $PUBLICATION); ?>> 🛒 A VENDRE !
+                                        <option value="1" <?html echo selectedS(1, $PUBLICATION); ?>> 🛒 A VENDRE !
                                         </option>
-										<option value="2" <?php echo selectedS(2, $PUBLICATION); ?>> ✅ ANNONCE CERTIFIÉ !</option>
-										<option value="0" <?php echo selectedS(0, $PUBLICATION); ?>> VENDU !</option>
+										<option value="2" <?html echo selectedS(2, $PUBLICATION); ?>> ✅ ANNONCE CERTIFIÉ !</option>
+										<option value="0" <?html echo selectedS(0, $PUBLICATION); ?>> VENDU !</option>
                                     </select>
                                 </div>
                             </div>
@@ -258,8 +258,8 @@ if (isset($_POST['edit'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

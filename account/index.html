@@ -1,10 +1,10 @@
-<?php
+<?html
 
-include "../includes/head.php";
-include "../includes/header.php";
+include "../includes/head.html";
+include "../includes/header.html";
 
 if (!isset($_SESSION['user'])) {
-    header('Location: index.php');
+    header('Location: index.html');
     exit();
 }
 
@@ -60,7 +60,7 @@ if (isset($_POST['modif'])) {
     <div class="container">
       <header class="section-header">
         <h3>Espace Client LeBonCoin</h3>
-        <p>Cette page contient toute vos informations de votre compte LeBonCoin de Grand Paris RP</p>
+        <p>Cette page contient toute vos informations de votre compte LeBonCoin de Holden</p>
 		<center><a class="btn btn-warning" href="#modification" data-toggle="modal"><b>Je souhaite faire une modification</b></a></center>
 		<br>
       </header>
@@ -68,31 +68,31 @@ if (isset($_POST['modif'])) {
         <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
           <div class="box">
             <h4 class="title">ID LeBonCoin</h4>
-            <b><p class="description"><font color=#ff5b03><?php echo $id_client; ?></font></p></b>
+            <b><p class="description"><font color=#ff5b03><?html echo $id_client; ?></font></p></b>
           </div>
         </div>
         <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
           <div class="box">
             <h4 class="title">Prénom & Nom</h4>
-           <b> <p class="description"><font color=#ff5b03><?php echo $username; ?></font></p></b>
+           <b> <p class="description"><font color=#ff5b03><?html echo $username; ?></font></p></b>
           </div>
         </div>
         <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
           <div class="box">
             <h4 class="title">Date D'inscription:</h4>
-           <b> <p class="description"><font color=#ff5b03><?php echo date("d-m-Y", $dateOfRegister); ?></font></p></b>
+           <b> <p class="description"><font color=#ff5b03><?html echo date("d-m-Y", $dateOfRegister); ?></font></p></b>
           </div>
         </div>
         <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
           <div class="box">
             <h4 class="title">Abonnement:</h4>
-           <b> <p class="description"><font color=#ff5b03><?php echo $grade; ?></font></p></b>
+           <b> <p class="description"><font color=#ff5b03><?html echo $grade; ?></font></p></b>
           </div>
         </div>
         <div class="col wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
           <div class="box">
             <center><h4><b>Date de naissance:</b></h4>
-            <a><b><font color=#ff5b03><?php echo $naissance; ?></font></a></p></center>
+            <a><b><font color=#ff5b03><?html echo $naissance; ?></font></a></p></center>
           </div>
         </div>
       </div>
@@ -112,9 +112,9 @@ if (isset($_POST['modif'])) {
                 <div class="modal-body">
                 <form method="POST" action="">
 					<div class="form-group">
-						<input type="text" name="username" placeholder="<?php echo $username; ?>" class="form-control" size="30" required="">
+						<input type="text" name="username" placeholder="<?html echo $username; ?>" class="form-control" size="30" required="">
 						<br>
-						<input type="date" name="naissance" placeholder="<?php echo $naissance; ?>" class="form-control" size="30" required="">
+						<input type="date" name="naissance" placeholder="<?html echo $naissance; ?>" class="form-control" size="30" required="">
 					  </div>
 					<input type="submit" name="modif" class="btn btn-success btn-lg btn-block" value="Enregistrer les modifications">
 				</form>
@@ -125,8 +125,8 @@ if (isset($_POST['modif'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

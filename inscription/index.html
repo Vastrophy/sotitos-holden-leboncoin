@@ -1,6 +1,6 @@
-<?php
+<?html
 
-include "../includes/head.php";
+include "../includes/head.html";
 
 if (isset($_SESSION['user'])) {
     header('Location: ../account');
@@ -75,7 +75,7 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title><?php echo SITE_NAME; ?> | Connexion</title>
+	<title><?html echo SITE_NAME; ?> | Connexion</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -152,8 +152,8 @@ if (isset($_POST['login'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

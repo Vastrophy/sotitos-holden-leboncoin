@@ -1,4 +1,4 @@
-<?php
+<?html
 ini_set('max_execution_time', 3600);
 define('OAUTH2_CLIENT_ID', '736322089430024275');
 define('OAUTH2_CLIENT_SECRET', 'KvvH6_SY4nNE-iZ_Umfh40K6xpfzxe_i');
@@ -18,7 +18,7 @@ if(get('code')) {
   ));
   $logout_token = $token->access_token;
   $_SESSION['access_token'] = $token->access_token;
-  header('Location: ' . $_SERVER['PHP_SELF']);
+  header('Location: ' . $_SERVER['html_SELF']);
 }
 if(session('access_token')) {
   $user = apiRequest($apiURLBase);
@@ -78,7 +78,7 @@ if(get('action') == 'logout') {
   header('Location: https://discordapp.com/api/oauth2/authorize' . '?' . http_build_query($params));
   die();
 if (isset($token->access_token)) {
-  header('Location: ../index.php');
+  header('Location: ../index.html');
 }
 }
 function apiRequest($url, $post=FALSE, $headers=array()) {

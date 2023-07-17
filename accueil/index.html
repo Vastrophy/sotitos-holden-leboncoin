@@ -1,7 +1,7 @@
-<?php
+<?html
 
-include "../includes/head.php";
-include "../includes/header.php";
+include "../includes/head.html";
+include "../includes/header.html";
 
 $result = mysqli_query($con, "SELECT * FROM `users`") or die(mysqli_error($con));
 $usersNb = mysqli_num_rows($result);
@@ -40,7 +40,7 @@ if (isset($_POST['ajout'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Annonce Effectué !", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=index.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=index.html">';
     }
 }
 
@@ -59,11 +59,11 @@ if (isset($_POST['ajout'])) {
       <div class="intro-info">
         <h2>Bienvenue sur<br><span><font color=orange>LeBonCoin</font></span><br> Site de revente de vos objets fiable !</h2>
         <div>
-		<?php if (isset($_SESSION['user'])) {  ?>
-		          <a href="../account" class="btn-get-started scrollto"><?php echo $username; ?></a>
-		  <?php } else { ?>
+		<?html if (isset($_SESSION['user'])) {  ?>
+		          <a href="../account" class="btn-get-started scrollto"><?html echo $username; ?></a>
+		  <?html } else { ?>
 		  <a href="../connexion" class="btn-get-started scrollto">Connexion</a>
-		  <?php } ?>
+		  <?html } ?>
           <p href="#annonce" data-toggle="modal" class="btn-services scrollto">Vendre un produit</p>
         </div>
       </div>
@@ -123,22 +123,22 @@ if (isset($_POST['ajout'])) {
         <div class="row counters">
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up"><?php echo $usersNb; ?></span>
+            <span data-toggle="counter-up"><?html echo $usersNb; ?></span>
             <p>Clients</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up"><?php echo $venduNb; ?></span>
+            <span data-toggle="counter-up"><?html echo $venduNb; ?></span>
             <p>Produits Vendu</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up"><?php echo $annonceNb; ?></span>
+            <span data-toggle="counter-up"><?html echo $annonceNb; ?></span>
             <p>Annonces</p>
           </div>
 
           <div class="col-lg-3 col-6 text-center">
-            <span data-toggle="counter-up"><?php echo $assuranceNb; ?></span>
+            <span data-toggle="counter-up"><?html echo $assuranceNb; ?></span>
             <p>Total d'Assurances</p>
           </div>
   
@@ -154,7 +154,7 @@ if (isset($_POST['ajout'])) {
         <p>Toute les publicités sont en contrat avec LeBonCoin afin de le faire de la pub.</p>
       </div>
       <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
-	  <?php
+	  <?html
                                         $result = mysqli_query($con, "SELECT * FROM partenaire") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
 										$ID = $resultatInfos['ID'];
@@ -164,13 +164,13 @@ if (isset($_POST['ajout'])) {
 										
                                         ?>
         <div class="col-lg-3 col-md-4 col-xs-6">
-          <div class="client-logo"><img src="<?php echo $resultatInfos['URL']; ?>" class="img-fluid" alt="Pub LeBonCoin">
+          <div class="client-logo"><img src="<?html echo $resultatInfos['URL']; ?>" class="img-fluid" alt="Pub LeBonCoin">
 		  <br><br>
-		  <center><p class="btn btn-dark" href="#pub<?php echo $ID; ?>" data-toggle="modal"><b>Voir plus</b></p></center>
+		  <center><p class="btn btn-dark" href="#pub<?html echo $ID; ?>" data-toggle="modal"><b>Voir plus</b></p></center>
 		  </div>
         </div>
 		
-		<?php } ?>
+		<?html } ?>
       </div>
     </div>
   </section>
@@ -253,7 +253,7 @@ if (isset($_POST['ajout'])) {
       </div>
     </section><!-- #team -->
 
-	  <?php
+	  <?html
                                         $result = mysqli_query($con, "SELECT * FROM partenaire") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
 										$ID = $resultatInfos['ID'];
@@ -262,20 +262,20 @@ if (isset($_POST['ajout'])) {
                                         $MESSAGE = $resultatInfos['MESSAGE'];
 										
                                         ?>
-<div id="pub<?php echo $ID; ?>" class="modal fade" data-backdrop="static" data-keyboard="false">
+<div id="pub<?html echo $ID; ?>" class="modal fade" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">
-          <center><h4><?php echo $TITRE; ?> - LeBonCoin</h4></center>
+          <center><h4><?html echo $TITRE; ?> - LeBonCoin</h4></center>
 		            <button type="button" class="close" data-dismiss="modal">×</button>
 
            </div>
                 <div class="modal-body">
                 <form method="POST" action="">
 					<div class="form-group">
-					    <input type="text" placeholder="Titre de la publicité: <?php echo $TITRE; ?>" class="form-control" size="30" disabled>
+					    <input type="text" placeholder="Titre de la publicité: <?html echo $TITRE; ?>" class="form-control" size="30" disabled>
 						<br>
-						<textarea type="text" placeholder="<?php echo $MESSAGE; ?>" class="form-control" size="1450" disabled></textarea>
+						<textarea type="text" placeholder="<?html echo $MESSAGE; ?>" class="form-control" size="1450" disabled></textarea>
 					  </div>
 					<input type="button" data-dismiss="modal" class="btn btn-danger btn-lg btn-block" value="Fermer">
 				</form>
@@ -283,7 +283,7 @@ if (isset($_POST['ajout'])) {
 		</div>
     </div>
 </div>
-<?php } ?>
+<?html } ?>
    
 
   </main>
@@ -297,7 +297,7 @@ if (isset($_POST['ajout'])) {
 
            </div>
                 <div class="modal-body">
-				<?php if (isset($_SESSION['user'])) {  ?>
+				<?html if (isset($_SESSION['user'])) {  ?>
 				<form method="POST" action="">
 					<div class="form-group">
 						<input type="text" name="TITRE" placeholder="Titre de l'annonce" class="form-control" size="30" required="">
@@ -319,18 +319,18 @@ if (isset($_POST['ajout'])) {
 						<br>
 						<input type="text" name="DISCORDMAIL" placeholder="Mail Discord (VOTREPSEUDO#4223)" class="form-control" size="30" required="">
 						<br>
-						<input type="text" name="TEL" placeholder="Numéro de téléphone (Parisien)" class="form-control" size="30" required="">
+						<input type="text" name="TEL" placeholder="Numéro de téléphone (Francais)" class="form-control" size="30" required="">
 					  </div>
 					<input type="submit" name="ajout" class="btn btn-success btn-lg btn-block" value="Publier l'annonce">
 					</form>
-					<?php } else { ?>
+					<?html } else { ?>
 					<center><h4><b><font color=#7a1515>Pour pouvoir vendre un produit merci de vous connecter :)</font></b></h4></center>
 				   <a href="../connexion" class="btn btn-success btn-lg btn-block">Connexion</a>
-                   <?php } ?>			</div>
+                   <?html } ?>			</div>
 		</div>
     </div>
 </div>
   
-<?php
-include "../includes/footer.php";
+<?html
+include "../includes/footer.html";
 ?>

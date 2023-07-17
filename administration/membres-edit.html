@@ -1,10 +1,10 @@
-<?php
+<?html
 
-require '../includes/head.php';
-require '../includes/header.php';
+require '../includes/head.html';
+require '../includes/header.html';
 
 if (!isset($_GET['id'])) {
-    header('Location: membres.php');
+    header('Location: membres.html');
     exit();
 }
 
@@ -31,7 +31,7 @@ while ($userInfo = mysqli_fetch_array($result)) {
 
 
 if ($rank == 4 && $rank == 5) {
-    header('Location: membres.php');
+    header('Location: membres.html');
     exit();
 }
 
@@ -45,7 +45,7 @@ if (isset($_POST['delete'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Vous avez supprimé le membre.", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=membres.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=membres.html">';
     }
 }
 
@@ -102,7 +102,7 @@ if (isset($_POST['edit'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Vous avez modifié le membre.", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=membres.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=membres.html">';
 }
 ?>
 <br>
@@ -123,7 +123,7 @@ if (isset($_POST['edit'])) {
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <center><h3 class="box-title m-b-0">Client: <?php echo $prenom; ?> <?php echo $name; ?></h3>
+            <center><h3 class="box-title m-b-0">Client: <?html echo $prenom; ?> <?html echo $name; ?></h3>
                         <p class="text-muted m-b-30">Remplissez le formulaire ci-dessous pour modifier le membre</p></center>
           </div>
         </div>
@@ -136,7 +136,7 @@ if (isset($_POST['edit'])) {
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">ID-Client</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" disabled value="<?php echo $idclient; ?>"
+                                    <input class="form-control" type="text" disabled value="<?html echo $idclient; ?>"
                                            id="example-text-input">
                                 </div>
                             </div>
@@ -144,7 +144,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Nom</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="name" type="search" value="<?php echo $name; ?>"
+                                    <input class="form-control" name="name" type="search" value="<?html echo $name; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -153,7 +153,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Naissance</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="search" disabled value="<?php echo $naissance; ?>"
+                                    <input class="form-control" type="search" disabled value="<?html echo $naissance; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ if (isset($_POST['edit'])) {
                                 <label for="example-email-input" class="col-2 col-form-label">Date d'inscription</label>
                                 <div class="col-10">
                                     <input class="form-control" type="text" disabled
-                                           value="<?php echo date("H:i:s | d-m-Y", $date_of_register); ?>"
+                                           value="<?html echo date("H:i:s | d-m-Y", $date_of_register); ?>"
                                            id="example-email-input">
                                 </div>
                             </div>
@@ -172,9 +172,9 @@ if (isset($_POST['edit'])) {
                                 <label for="example-tel-input" class="col-2 col-form-label">Abonnement</label>
 
                                 <div class="col-10">
-                                    <select class="form-control" <?php echo($rank == 4 ? "disabled" : ""); ?>
+                                    <select class="form-control" <?html echo($rank == 4 ? "disabled" : ""); ?>
                                             name="rank">
-                                        <?php
+                                        <?html
                                         function selectedS1($check, $grade1)
                                         {
                                             if ($check == $grade1) {
@@ -184,10 +184,10 @@ if (isset($_POST['edit'])) {
 
                                         ?>
 
-                                        <option value="0" <?php echo selectedS1(0, $grade); ?> >Client LeBonCoin</option>
-                                        <option value="3" <?php echo selectedS1(3, $grade); ?> >Premium LeBonCoin</option>
-                                        <option value="4" <?php echo selectedS1(4, $grade); ?> >Staff LeBonCoin</option>
-                                        <option value="5" <?php echo selectedS1(5, $grade); ?> >PDG LeBonCoin</option>
+                                        <option value="0" <?html echo selectedS1(0, $grade); ?> >Client LeBonCoin</option>
+                                        <option value="3" <?html echo selectedS1(3, $grade); ?> >Premium LeBonCoin</option>
+                                        <option value="4" <?html echo selectedS1(4, $grade); ?> >Staff LeBonCoin</option>
+                                        <option value="5" <?html echo selectedS1(5, $grade); ?> >PDG LeBonCoin</option>
                                     </select>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@ if (isset($_POST['edit'])) {
                                 <div class="col-10">
                                     <select class="form-control"
                                             name="enchere">
-                                        <?php
+                                        <?html
                                         function selectedS4($check, $enchere4)
                                         {
                                             if ($check == $enchere4) {
@@ -208,8 +208,8 @@ if (isset($_POST['edit'])) {
 
                                         ?>
 
-                                        <option value="0" <?php echo selectedS1(0, $enchere); ?> >Cette personne ne possède pas l'option</option>
-                                        <option value="1" <?php echo selectedS1(1, $enchere); ?> >Cette personne possède l'option</option>
+                                        <option value="0" <?html echo selectedS1(0, $enchere); ?> >Cette personne ne possède pas l'option</option>
+                                        <option value="1" <?html echo selectedS1(1, $enchere); ?> >Cette personne possède l'option</option>
                                     </select>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@ if (isset($_POST['edit'])) {
                                 <div class="col-10">
                                     <select class="form-control"
                                             name="premium">
-                                        <?php
+                                        <?html
                                         function selectedS5($check, $premium5)
                                         {
                                             if ($check == $premium5) {
@@ -230,8 +230,8 @@ if (isset($_POST['edit'])) {
 
                                         ?>
 
-                                        <option value="0" <?php echo selectedS1(0, $premium); ?> >Cette personne ne possède pas le premium+</option>
-                                        <option value="1" <?php echo selectedS1(1, $premium); ?> >Cette personne possède le premium+</option>
+                                        <option value="0" <?html echo selectedS1(0, $premium); ?> >Cette personne ne possède pas le premium+</option>
+                                        <option value="1" <?html echo selectedS1(1, $premium); ?> >Cette personne possède le premium+</option>
                                     </select>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@ if (isset($_POST['edit'])) {
                                     compte</label>
                                 <div class="col-10">
                                     <select class="form-control" name="status">
-                                        <?php
+                                        <?html
                                         function selectedS($check, $ban1)
                                         {
                                             if ($check == $ban1) {
@@ -251,9 +251,9 @@ if (isset($_POST['edit'])) {
 
                                         ?>
 
-                                        <option value="1" <?php echo selectedS(1, $isBan); ?>> Compte vérifié
+                                        <option value="1" <?html echo selectedS(1, $isBan); ?>> Compte vérifié
                                         </option>
-										<option value="5" <?php echo selectedS(5, $isBan); ?>> Banni</option>
+										<option value="5" <?html echo selectedS(5, $isBan); ?>> Banni</option>
                                         </option>
                                     </select>
                                 </div>
@@ -263,7 +263,7 @@ if (isset($_POST['edit'])) {
                                     Editer le client
                                 </button>
                                 <br/> <br/>
-                                <button type="submit" name="delete" <?php echo($rank == 4 && $rank == 5 ? "disabled" : ""); ?>
+                                <button type="submit" name="delete" <?html echo($rank == 4 && $rank == 5 ? "disabled" : ""); ?>
                                         class="btn btn-danger waves-effect waves-light m-r-10">Supprimer le client
                                 </button>
                             </center>
@@ -291,8 +291,8 @@ if (isset($_POST['edit'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

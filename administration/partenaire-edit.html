@@ -1,10 +1,10 @@
-<?php
+<?html
 
-require '../includes/head.php';
-require '../includes/header.php';
+require '../includes/head.html';
+require '../includes/header.html';
 
 if (!isset($_GET['id'])) {
-    header('Location: partenaire.php');
+    header('Location: partenaire.html');
     exit();
 }
 
@@ -24,7 +24,7 @@ while ($userInfo = mysqli_fetch_array($result)) {
 
 
 if ($rank == 4 && $rank == 5) {
-    header('Location: partenaire.php');
+    header('Location: partenaire.html');
     exit();
 }
 
@@ -57,7 +57,7 @@ if (isset($_POST['edit'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Vous avez modifié le partenariat.", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=partenaire.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=partenaire.html">';
 }
 ?>
 <br>
@@ -78,7 +78,7 @@ if (isset($_POST['edit'])) {
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <center><h3 class="box-title m-b-0">Partenaire: <?php echo $TITRE; ?></h3>
+            <center><h3 class="box-title m-b-0">Partenaire: <?html echo $TITRE; ?></h3>
                         <p class="text-muted m-b-30">Remplissez le formulaire ci-dessous pour modifier le partenaire</p></center>
           </div>
         </div>
@@ -91,7 +91,7 @@ if (isset($_POST['edit'])) {
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">Titre de l'annonce</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" name="TITRE" value="<?php echo $TITRE; ?>"
+                                    <input class="form-control" type="text" name="TITRE" value="<?html echo $TITRE; ?>"
                                            id="example-text-input">
                                 </div>
                             </div>
@@ -99,7 +99,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Url de de l'image</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="URL" type="search" value="<?php echo $URL; ?>"
+                                    <input class="form-control" name="URL" type="search" value="<?html echo $URL; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -107,7 +107,7 @@ if (isset($_POST['edit'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Message de l'annonce</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="MESSAGE" type="search" value="<?php echo $MESSAGE; ?>"
+                                    <input class="form-control" name="MESSAGE" type="search" value="<?html echo $MESSAGE; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -142,8 +142,8 @@ if (isset($_POST['edit'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

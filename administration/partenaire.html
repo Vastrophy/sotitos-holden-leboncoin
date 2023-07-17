@@ -1,7 +1,7 @@
-<?php
+<?html
 
-include "../includes/head.php";
-include "../includes/header.php";
+include "../includes/head.html";
+include "../includes/header.html";
 
 if ($rank < 4) {
     header('Location: ../account/');
@@ -261,7 +261,7 @@ if ($rank < 4) {
   </thead>
   <tbody>
 <tr role="row" class="odd">
-                                        <?php
+                                        <?html
                                         $result = mysqli_query($con, "SELECT * FROM partenaire") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
                                         $titre = $resultatInfos['TITRE'];
@@ -271,13 +271,13 @@ if ($rank < 4) {
                                         
                                         ?>
                                         </td>
-                                        <td class="text-center"><b><font color=white><?php echo $titre; ?></font></b></td>
-                                        <td class="text-center"><b><font color=white><?php echo $url; ?></font></b></td>
-										<td class="text-center"><b><font color=white><?php echo $message; ?></font></b></td>
-                                        <td class="text-center"><a class="btn btn-success" href="partenaire-edit.php?id=<?php echo $resultatInfos['ID']; ?>">Edit</a>
+                                        <td class="text-center"><b><font color=white><?html echo $titre; ?></font></b></td>
+                                        <td class="text-center"><b><font color=white><?html echo $url; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?html echo $message; ?></font></b></td>
+                                        <td class="text-center"><a class="btn btn-success" href="partenaire-edit.html?id=<?html echo $resultatInfos['ID']; ?>">Edit</a>
                                         </td>
                                     </tr>
-									 <?php } ?>
+									 <?html } ?>
   </tbody>
 </table></center>
 	  
@@ -294,8 +294,8 @@ if ($rank < 4) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

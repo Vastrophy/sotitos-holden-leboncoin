@@ -1,10 +1,10 @@
-<?php
+<?html
 
-require '../includes/head.php';
-require '../includes/header.php';
+require '../includes/head.html';
+require '../includes/header.html';
 
 if (!isset($_GET['id'])) {
-    header('Location: encheres.php');
+    header('Location: encheres.html');
     exit();
 }
 
@@ -30,7 +30,7 @@ while ($userInfo = mysqli_fetch_array($result)) {
 
 
 if ($rank == 4 && $rank == 5) {
-    header('Location: encheres.php');
+    header('Location: encheres.html');
     exit();
 }
 
@@ -91,7 +91,7 @@ if (isset($_POST['edit'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Modification faite :)", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=encheres.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=encheres.html">';
 }
 
 
@@ -105,7 +105,7 @@ if (isset($_POST['delete'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Suppresion enchère !", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=encheres.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=encheres.html">';
     }
 }
 ?>
@@ -127,7 +127,7 @@ if (isset($_POST['delete'])) {
       <div class="card">
         <div class="card-header">
           <div class="card-title-wrap bar-success">
-            <center><h3 class="box-title m-b-0">Enchère: <?php echo $TITRE; ?></h3>
+            <center><h3 class="box-title m-b-0">Enchère: <?html echo $TITRE; ?></h3>
                         <p class="text-muted m-b-30">Remplissez le formulaire ci-dessous pour modifier l'enchère</p></center>
           </div>
         </div>
@@ -140,7 +140,7 @@ if (isset($_POST['delete'])) {
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-2 col-form-label">Titre de l'annonce</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="text" name="TITRE" value="<?php echo $TITRE; ?>"
+                                    <input class="form-control" type="text" name="TITRE" value="<?html echo $TITRE; ?>"
                                            id="example-text-input">
                                 </div>
                             </div>
@@ -148,7 +148,7 @@ if (isset($_POST['delete'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Url de de l'image</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="URL" type="search" value="<?php echo $URL; ?>"
+                                    <input class="form-control" name="URL" type="search" value="<?html echo $URL; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -156,7 +156,7 @@ if (isset($_POST['delete'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Message de l'enchère</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="DESCRIPTION" type="search" value="<?php echo $DESCRIPTION; ?>"
+                                    <input class="form-control" name="DESCRIPTION" type="search" value="<?html echo $DESCRIPTION; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -164,7 +164,7 @@ if (isset($_POST['delete'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Prix de départ</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="DEPARTPRIX" type="search" value="<?php echo $DEPARTPRIX; ?>"
+                                    <input class="form-control" name="DEPARTPRIX" type="search" value="<?html echo $DEPARTPRIX; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -172,7 +172,7 @@ if (isset($_POST['delete'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Fin de l'enchère</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="FIN" type="date" value="<?php echo $FIN; ?>"
+                                    <input class="form-control" name="FIN" type="date" value="<?html echo $FIN; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -180,7 +180,7 @@ if (isset($_POST['delete'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Organisateur</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="ORGANISATEUR" type="search" value="<?php echo $ORGANISATEUR; ?>"
+                                    <input class="form-control" name="ORGANISATEUR" type="search" value="<?html echo $ORGANISATEUR; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -188,7 +188,7 @@ if (isset($_POST['delete'])) {
 							<div class="form-group row">
                                 <label for="example-search-input" class="col-2 col-form-label">Prix de vente</label>
                                 <div class="col-10">
-                                    <input class="form-control" name="VENTEPRIX" type="search" value="<?php echo $VENTEPRIX; ?>"
+                                    <input class="form-control" name="VENTEPRIX" type="search" value="<?html echo $VENTEPRIX; ?>"
                                            id="example-search-input">
                                 </div>
                             </div>
@@ -228,8 +228,8 @@ if (isset($_POST['delete'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>

@@ -1,7 +1,7 @@
-<?php
+<?html
 
-include "../includes/head.php";
-include "../includes/header.php";
+include "../includes/head.html";
+include "../includes/header.html";
 $prixmin = 0;
 if (isset($_POST['ajout'])) {
             if (isset($_POST['PRIX'])) {
@@ -21,7 +21,7 @@ if (isset($_POST['ajout'])) {
                                                 $(document).ready(function () {
                                                     toastr["success"]("Enchère qui monte :)", "Bravo:")
                                                 });
-                                            </script><META http-equiv="refresh" content="2;URL=index.php">';
+                                            </script><META http-equiv="refresh" content="2;URL=index.html">';
     }
 }
 
@@ -34,14 +34,14 @@ if (isset($_POST['ajout'])) {
       <header class="section-header">
 	  	  <center><img src='https://grandparisrp.cf/img/logo.png' width="110"></img></center>
         <h3>Les Enchères LeBonCoin</h3>
-        <p>Page des Enchères LeBonCoin de Grand Paris RP</p>
+        <p>Page des Enchères LeBonCoin de Holden</p>
 		<br>
       </header>
 	  
 
       <div class="row">
      
-                                        <?php
+                                        <?html
                                         $result = mysqli_query($con, "SELECT * FROM enchere") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
 										$url = $resultatInfos['URL'];
@@ -57,9 +57,9 @@ if (isset($_POST['ajout'])) {
                                         ?>
  <div class="offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
           <div class="box">
-            <center><img src="<?php echo $url; ?>" width="150"></center>
-            <h4 class="title"><center><?php echo $titre; ?> <br> <font color=#6e3030><?php echo $description; ?></font></center></h4>
-			<h3 class="title"><center>Vendeur: <font color=#4c1682><?php echo $organisateur; ?></font><br> Prix de départ: <font color=#264085><?php echo $departprix; ?></font> <br><br> Prix de vente Actuellement: <font color=#264085><?php
+            <center><img src="<?html echo $url; ?>" width="150"></center>
+            <h4 class="title"><center><?html echo $titre; ?> <br> <font color=#6e3030><?html echo $description; ?></font></center></h4>
+			<h3 class="title"><center>Vendeur: <font color=#4c1682><?html echo $organisateur; ?></font><br> Prix de départ: <font color=#264085><?html echo $departprix; ?></font> <br><br> Prix de vente Actuellement: <font color=#264085><?html
                                         $result = mysqli_query($con, "SELECT * FROM encherir ORDER BY DATEPRIX DESC limit 1") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
                                         $ID = $resultatInfos['ID'];
@@ -67,13 +67,13 @@ if (isset($_POST['ajout'])) {
                                         $DATEPRIX = $resultatInfos['DATEPRIX'];
 										$ENCHERISSEUR = $resultatInfos['ENCHERISSEUR'];
                                          $prixmin = $PRIX;
-                                        ?><?php echo $PRIX; ?> de <?php echo $ENCHERISSEUR; ?><?php } ?></font></center></h3>
+                                        ?><?html echo $PRIX; ?> de <?html echo $ENCHERISSEUR; ?><?html } ?></font></center></h3>
 			<center><p class="description"><b>Attention les personnes n'ayant pas les moyens et qui participe au Enchères (Troll) seront bannie de la plateforme merci.</b></p></center>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class="btn btn-dark" href="#encherir" data-toggle="modal"><b><font color=white>Enchérir l'annonce !</font></b></a>   <a class="btn btn-danger"><b><font color=white>Fin de l'enchère: <?php echo $fin; ?></font></b></a>
+			<a class="btn btn-dark" href="#encherir" data-toggle="modal"><b><font color=white>Enchérir l'annonce !</font></b></a>   <a class="btn btn-danger"><b><font color=white>Fin de l'enchère: <?html echo $fin; ?></font></b></a>
           </div>
         </div>
-		<?php } ?>
+		<?html } ?>
 		
 	  
       </div>
@@ -311,7 +311,7 @@ if (isset($_POST['ajout'])) {
   </tr>
 	  </thead>
 	  <tbody>
-			      <?php
+			      <?html
                                         $result = mysqli_query($con, "SELECT * FROM encherir ORDER BY DATEPRIX DESC") or die(mysqli_error($con));
                                         while ($resultatInfos = mysqli_fetch_array($result)) {
                                         $ID = $resultatInfos['ID'];
@@ -321,13 +321,13 @@ if (isset($_POST['ajout'])) {
 										
                                         ?>
   <tr>
-  <td><b><font color=white><?php echo $resultatInfos['ID']; ?></font></b></td>
-  <td><b><font color=orange><?php echo $resultatInfos['PRIX']; ?></font></b></td>
-  <td><b><font color=white><?php echo $resultatInfos['ENCHERISSEUR']; ?></font></b></td>
-   <td><b><font color=white><?php echo date("d-m-Y à H:i:s", $resultatInfos['DATEPRIX']); ?></font></b></td>
+  <td><b><font color=white><?html echo $resultatInfos['ID']; ?></font></b></td>
+  <td><b><font color=orange><?html echo $resultatInfos['PRIX']; ?></font></b></td>
+  <td><b><font color=white><?html echo $resultatInfos['ENCHERISSEUR']; ?></font></b></td>
+   <td><b><font color=white><?html echo date("d-m-Y à H:i:s", $resultatInfos['DATEPRIX']); ?></font></b></td>
 
   </tr>
-  <?php } ?>
+  <?html } ?>
 	      
 	  </tbody>
 	</table></center>
@@ -349,16 +349,16 @@ if (isset($_POST['ajout'])) {
                 <div class="modal-body">
                 <form method="POST" action="">
 					<div class="form-group">
-					<?php if (isset($_SESSION['user'])) {  ?>
+					<?html if (isset($_SESSION['user'])) {  ?>
 						<center><label for="exampleFormControlSelect1"><b>Prix:</b></label></center>
 						<input type="number" name="PRIX" min="<?= $prixmin ?>" placeholder="Exemple: 15 000€" class="form-control" size="30" required="">
 					  </div>
 					  					<input type="submit" name="ajout" class="btn btn-success btn-lg btn-block" value="Enchérir sur l'annonce">
 
-				   <?php } else { ?>
+				   <?html } else { ?>
 				   <center><h4><b><font color=#7a1515>Pour pouvoir enchérir merci de vous connecter :)</font></b></h4></center>
 				   <a href="../connexion" class="btn btn-success btn-lg btn-block">Connexion</a>
-                   <?php } ?>
+                   <?html } ?>
 				</form>
 			</div>
 		</div>
@@ -371,8 +371,8 @@ if (isset($_POST['ajout'])) {
 
 
 
-<?php
+<?html
 
-include "../includes/footer.php";
+include "../includes/footer.html";
 
 ?>
