@@ -1,0 +1,402 @@
+<?php
+
+include "../includes/head.php";
+include "../includes/header.php";
+
+if ($rank < 4) {
+    header('Location: ../account/');
+    exit();
+}
+
+if (isset($_POST['ajout'])) {
+            if (isset($_POST['organisateur']) && isset($_POST['url']) && isset($_POST['titre']) && isset($_POST['description']) && isset($_POST['departprix']) && isset($_POST['fin'])) {
+
+				$organisateur = mysqli_real_escape_string($con, $_POST['organisateur']);
+				$url = mysqli_real_escape_string($con, $_POST['url']);
+				$titre = mysqli_real_escape_string($con, $_POST['titre']);
+				$description = mysqli_real_escape_string($con, $_POST['description']);
+				$departprix = mysqli_real_escape_string($con, $_POST['departprix']);
+				$fin = mysqli_real_escape_string($con, $_POST['fin']);
+				$date = time();
+				
+				
+		    mysqli_query($con, "INSERT INTO enchere (`ID`, `ORGANISATEUR`, `FIN`, `DESCRIPTION`, `DEPARTPRIX`, `VENTEPRIX`, `TITRE`, `URL`) VALUES('1', '$organisateur', '$fin', '$description', '$departprix', 'Pas encore de prix', '$titre', '$url')") or die(mysqli_error($con));
+			mysqli_query($con, "INSERT INTO logs (`TYPE`, `DATE`, `STAFF`, `MESSAGE`) VALUES('Staff', '$date', '$username', 'Ajout Enchère $tire')") or die(mysqli_error($con));
+
+       
+        
+
+        echo '<script>
+                                                $(document).ready(function () {
+                                                    toastr["success"]("Enchère Effectué !", "Bravo:")
+                                                });
+                                            </script><META http-equiv="refresh" content="2;URL=encheres.php">';
+    }
+}
+
+if (isset($_POST['delete'])) {
+    {  
+	    $date = time();
+        mysqli_query($con, "DELETE FROM `encherir`") or die(mysqli_error($con));
+		mysqli_query($con, "INSERT INTO logs (`TYPE`, `DATE`, `STAFF`, `MESSAGE`) VALUES('Staff', '$date', '$username', 'Suppression des enchérisseurs')") or die(mysqli_error($con));
+		 
+        echo '<script>
+                                                $(document).ready(function () {
+                                                    toastr["success"]("Vous avez supprimer les enchérisseurs", "Bravo:")
+                                                });
+                                            </script><META http-equiv="refresh" content="2;URL=encheres.php">';
+    }
+}
+
+?>
+<br>
+<br>
+
+  <section id="services" class="section-bg">
+    <div class="container">
+      <header class="section-header">
+	  	  <center><img src='https://grandparisrp.cf/img/logo.png' width="110"></img></center>
+        <h3>Enchères LeBonCoin</h3>
+        <p>Liste de toute les Enchères LeBonCoin de Grand Paris RP</p>
+		<br>
+	 <center><a class="btn btn-success" href="#enchere" data-toggle="modal"><b><font color=white>Ajouter une enchère</font></b></a>
+	  <br>
+	  <br>
+	 <form method="POST" action="">
+ <button type="submit" name="delete" class="btn btn-danger">
+                                    Supprimer toute les offres de l'enchère
+                                </button>	  <br></center>
+	  </form>
+	   <br>
+      </header>
+      <div class="row">
+	  
+	  
+	  <style>
+    table {
+      border-collapse: collapse;
+      text-align: center;
+    }
+    .table {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 1rem;
+      background-color: transparent;
+    }
+
+    .table th,
+    .table td {
+      padding: 0.75rem;
+      vertical-align: top;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .table thead th {
+      vertical-align: bottom;
+      border-bottom: 2px solid #dee2e6;
+	   text-align: center;
+    }
+
+    .table tbody + tbody {
+      border-top: 2px solid #dee2e6;
+    }
+
+    .table .table {
+      background-color: #fff;
+    }
+
+    .table-sm th,
+    .table-sm td {
+      padding: 0.3rem;
+    }
+
+    .table-bordered {
+      border: 1px solid #dee2e6;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid #dee2e6;
+    }
+
+    .table-bordered thead th,
+    .table-bordered thead td {
+      border-bottom-width: 2px;
+    }
+
+    .table-borderless th,
+    .table-borderless td,
+    .table-borderless thead th,
+    .table-borderless tbody + tbody {
+      border: 0;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgb(#100E2E);
+	  color: #000000;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table-primary,
+    .table-primary > th,
+    .table-primary > td {
+      background-color: #b8daff;
+    }
+
+    .table-hover .table-primary:hover {
+      background-color: #9fcdff;
+    }
+
+    .table-hover .table-primary:hover > td,
+    .table-hover .table-primary:hover > th {
+      background-color: #9fcdff;
+    }
+
+    .table-secondary,
+    .table-secondary > th,
+    .table-secondary > td {
+      background-color: #d6d8db;
+    }
+
+    .table-hover .table-secondary:hover {
+      background-color: #c8cbcf;
+    }
+
+    .table-hover .table-secondary:hover > td,
+    .table-hover .table-secondary:hover > th {
+      background-color: #c8cbcf;
+    }
+
+    .table-success,
+    .table-success > th,
+    .table-success > td {
+      background-color: #c3e6cb;
+    }
+
+    .table-hover .table-success:hover {
+      background-color: #b1dfbb;
+    }
+
+    .table-hover .table-success:hover > td,
+    .table-hover .table-success:hover > th {
+      background-color: #b1dfbb;
+    }
+
+    .table-info,
+    .table-info > th,
+    .table-info > td {
+      background-color: #bee5eb;
+    }
+
+    .table-hover .table-info:hover {
+      background-color: #abdde5;
+    }
+
+    .table-hover .table-info:hover > td,
+    .table-hover .table-info:hover > th {
+      background-color: #abdde5;
+    }
+
+    .table-warning,
+    .table-warning > th,
+    .table-warning > td {
+      background-color: #ffeeba;
+    }
+
+    .table-hover .table-warning:hover {
+      background-color: #ffe8a1;
+    }
+
+    .table-hover .table-warning:hover > td,
+    .table-hover .table-warning:hover > th {
+      background-color: #ffe8a1;
+    }
+
+    .table-danger,
+    .table-danger > th,
+    .table-danger > td {
+      background-color: #f5c6cb;
+    }
+
+    .table-hover .table-danger:hover {
+      background-color: #f1b0b7;
+    }
+
+    .table-hover .table-danger:hover > td,
+    .table-hover .table-danger:hover > th {
+      background-color: #f1b0b7;
+    }
+
+    .table-light,
+    .table-light > th,
+    .table-light > td {
+      background-color: #fdfdfe;
+    }
+
+    .table-hover .table-light:hover {
+      background-color: #ececf6;
+    }
+
+    .table-hover .table-light:hover > td,
+    .table-hover .table-light:hover > th {
+      background-color: #ececf6;
+    }
+
+    .table-dark,
+    .table-dark > th,
+    .table-dark > td {
+      background-color: #c6c8ca;
+    }
+
+    .table-hover .table-dark:hover {
+      background-color: #b9bbbe;
+    }
+
+    .table-hover .table-dark:hover > td,
+    .table-hover .table-dark:hover > th {
+      background-color: #b9bbbe;
+    }
+
+    .table-active,
+    .table-active > th,
+    .table-active > td {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table-hover .table-active:hover {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table-hover .table-active:hover > td,
+    .table-hover .table-active:hover > th {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+
+    .table .thead-dark th {
+      color: #fff;
+      background-color: rgb(15, 31, 39);
+      border-color: #32383e;
+    }
+
+    .table .thead-light th {
+      color: #495057;
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+    }
+
+    .table-dark {
+      color: #fff;
+      background-color: rgb(15, 31, 39);
+    }
+
+    
+
+</style>
+      
+	  
+	<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+    <center>
+      <th scope="col">Titre</th>
+	  <th>Montant départ</th>
+	  <th>Montant Fin</th>
+	  <th>Description</th>
+	  <th>Organisateur</th>
+	  <th>Fin le</th>
+	  <th scope="col"></th></center>
+    </tr>
+  </thead>
+  <tbody>
+<tr role="row" class="odd">
+                                        <?php
+                                        $result = mysqli_query($con, "SELECT * FROM enchere") or die(mysqli_error($con));
+                                        while ($resultatInfos = mysqli_fetch_array($result)) {
+                                        $titre = $resultatInfos['TITRE'];
+										$description = $resultatInfos['DESCRIPTION'];
+										$organisateur = $resultatInfos['ORGANISATEUR'];
+										$fin = $resultatInfos['FIN'];
+										$departprix = $resultatInfos['DEPARTPRIX'];
+										$venteprix = $resultatInfos['VENTEPRIX'];
+
+                                        
+                                        ?>
+                                        </td>
+                                        <td class="text-center"><b><font color=white><?php echo $titre; ?></font></b></td>
+                                        <td class="text-center"><b><font color=white><?php echo $departprix; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?php echo $venteprix; ?></font></b></td>
+									    <td class="text-center"><b><font color=white><?php echo $description; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?php echo $organisateur; ?></font></b></td>
+										<td class="text-center"><b><font color=white><?php echo $fin; ?></font></b></td>
+                                        <td class="text-center"><a class="btn btn-success" href="enchere-edit.php?id=<?php echo $resultatInfos['ID']; ?>">Edit</a>
+                                        </td>
+                                    </tr>
+									 <?php } ?>
+  </tbody>
+</table></center>
+	  
+	  
+      </div>
+    </div>
+	  <br>
+  <br>
+  <br>
+  <br>
+  
+  <div id="enchere" class="modal fade" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+          <center><h4>Ajout Enchère - LeBonCoin</h4></center>
+		            <button type="button" class="close" data-dismiss="modal">×</button>
+
+           </div>
+                <div class="modal-body">
+                <form method="POST" action="">
+					<div class="form-group">
+					    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Organisateur:</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="organisateur">
+						<?php
+                                        $result = mysqli_query($con, "SELECT * FROM users") or die(mysqli_error($con));
+                                        while ($resultatInfos = mysqli_fetch_array($result)) {
+										$name2 = $resultatInfos['USERNAME'];
+										$name1 = $resultatInfos['PRENOM'];
+										
+                                        ?>
+                        <option value="<?php echo $name1; ?> <?php echo $name2; ?>"><?php echo $name1; ?> <?php echo $name2; ?></option>
+						<?php } ?>
+                        </select>
+                        </div>
+						<label for="exampleFormControlSelect1">Titre de l'enchère:</label>
+						<input type="text" name="titre" placeholder="Vente de vin" class="form-control" size="30" required="">
+						<label for="exampleFormControlSelect1">Description de l'enchère:</label>
+						<textarea type="text" name="description" placeholder="Vente 6 bouteilles de vin rare de 1990" class="form-control" size="30" required=""></textarea>
+						<label for="exampleFormControlSelect1">Prix de départ:</label>
+						<input type="text" name="departprix" placeholder="10 000€" class="form-control" size="30" required="">
+						<label for="exampleFormControlSelect1">Lien de l'image:</label>
+						<input type="text" name="url" placeholder="https://www.noelshack.com/" class="form-control" size="30" required="">
+						<label for="exampleFormControlSelect1">Fin de l'enchère:</label>
+						<input type="text" name="fin" placeholder="20H00" class="form-control" size="30" required="">
+					  </div>
+					<input type="submit" name="ajout" class="btn btn-success btn-lg btn-block" value="Enregistrer les modifications">
+				</form>
+			</div>
+		</div>
+    </div>
+</div>
+
+  </section>
+  
+ 
+
+
+
+<?php
+
+include "../includes/footer.php";
+
+?>

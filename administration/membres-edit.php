@@ -1,0 +1,298 @@
+<?php
+
+require '../includes/head.php';
+require '../includes/header.php';
+
+if (!isset($_GET['id'])) {
+    header('Location: membres.php');
+    exit();
+}
+
+if ($rank < 4) {
+    header('Location: ../account/');
+    exit();
+}
+
+$idUser = mysqli_real_escape_string($con, $_GET['id']);
+$result = mysqli_query($con, "SELECT * FROM `users` WHERE `ID` = '$idUser' LIMIT 1") or die(mysqli_error($con));
+
+while ($userInfo = mysqli_fetch_array($result)) {
+    $name = $userInfo['USERNAME'];
+	$prenom = $userInfo['PRENOM'];
+    $idclient = $userInfo['ID_CLIENT'];
+    $date_of_register = $userInfo['DATE_INSCRIPTION'];
+    $ip = $userInfo['IP_ADRESS'];
+	$naissance = $userInfo['NAISSANCE'];
+    $grade = $userInfo['RANK'];
+    $isBan = $userInfo['STATUS'];
+	$premium = $userInfo['PREMIUM'];
+	$enchere = $userInfo['ENCHERE'];
+}
+
+
+if ($rank == 4 && $rank == 5) {
+    header('Location: membres.php');
+    exit();
+}
+
+if (isset($_POST['delete'])) {
+    if ($rank == 4 || $rank == 5) {
+        mysqli_query($con, "DELETE FROM `users` WHERE `ID` = '$idUser' LIMIT 1") or die(mysqli_error($con));
+		$date = time();
+		mysqli_query($con, "INSERT INTO logs (`TYPE`, `DATE`, `STAFF`, `MESSAGE`) VALUES('Staff', '$date', 'Staff', 'Modification du client $prenom $name')") or die(mysqli_error($con));
+
+        echo '<script>
+                                                $(document).ready(function () {
+                                                    toastr["success"]("Vous avez supprimé le membre.", "Bravo:")
+                                                });
+                                            </script><META http-equiv="refresh" content="2;URL=membres.php">';
+    }
+}
+
+if (isset($_POST['edit'])) {
+    if ($isBan != $_POST['status']) {
+        $statusNew = mysqli_real_escape_string($con, $_POST['status']);
+
+        mysqli_query($con, "UPDATE `users` SET `STATUS` = '$statusNew' WHERE `ID` = '$idUser'") or die(mysqli_error($con));
+		$date = time();
+		mysqli_query($con, "INSERT INTO logs (`TYPE`, `DATE`, `STAFF`, `MESSAGE`) VALUES('Staff', '$date', 'Staff', 'Modification du client $prenom $name (Status $status à $statusNew)')") or die(mysqli_error($con));
+    }
+	
+	if (isset($_POST['name'])) {
+        if ($rank == 5 || $rank == 4) {
+		$name = mysqli_real_escape_string($con, $_POST['name']);
+            mysqli_query($con, "UPDATE `users` SET `USERNAME` = '$name' WHERE `id` = '$idUser'") or die(mysqli_error($con));
+        }
+    }
+	
+	if (isset($_POST['prenom'])) {
+        if ($rank == 5 || $rank == 4) {
+		$prenom = mysqli_real_escape_string($con, $_POST['prenom']);
+            mysqli_query($con, "UPDATE `users` SET `PRENOM` = '$prenom' WHERE `id` = '$idUser'") or die(mysqli_error($con));
+        }
+    }
+	
+	if (isset($_POST['enchere'])) {
+        if ($rank == 5 || $rank == 4) {
+            $enchereNew = mysqli_real_escape_string($con, $_POST['enchere']);
+
+            mysqli_query($con, "UPDATE `users` SET `ENCHERE` = '$enchereNew' WHERE `ID` = '$idUser'") or die(mysqli_error($con));
+        }
+    }
+	
+	if (isset($_POST['premium'])) {
+        if ($rank == 5 || $rank == 4) {
+            $premiumNew = mysqli_real_escape_string($con, $_POST['premium']);
+
+            mysqli_query($con, "UPDATE `users` SET `PREMIUM` = '$premiumNew' WHERE `ID` = '$idUser'") or die(mysqli_error($con));
+        }
+    }
+
+    if (isset($_POST['rank'])) {
+        if ($rank == 5) {
+            $rankNew = mysqli_real_escape_string($con, $_POST['rank']);
+
+            mysqli_query($con, "UPDATE `users` SET `RANK` = '$rankNew' WHERE `ID` = '$idUser'") or die(mysqli_error($con));
+			$date = time();
+		mysqli_query($con, "INSERT INTO logs (`TYPE`, `DATE`, `STAFF`, `MESSAGE`) VALUES('Staff', '$date', 'Staff', 'Modification Abonnement du client $prenom $name (Grade $rank à $rankNew)')") or die(mysqli_error($con));
+        }
+    }
+
+    echo '<script>
+                                                $(document).ready(function () {
+                                                    toastr["success"]("Vous avez modifié le membre.", "Bravo:")
+                                                });
+                                            </script><META http-equiv="refresh" content="2;URL=membres.php">';
+}
+?>
+<br>
+<br>
+
+  <section id="services" class="section-bg">
+    <div class="container">
+      <header class="section-header">
+	  	  <center><img src='https://grandparisrp.cf/img/logo.png' width="110"></img></center>
+        <h3>Administration LeBonCoin</h3>
+        <p>Liste de tout les clients LeBonCoin de Grand Paris RP</p>
+		<br>
+      </header>
+      <div class="row">
+      
+	        
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <center><h3 class="box-title m-b-0">Client: <?php echo $prenom; ?> <?php echo $name; ?></h3>
+                        <p class="text-muted m-b-30">Remplissez le formulaire ci-dessous pour modifier le membre</p></center>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <div class="row my-2">
+              <div class="col-md-11">
+                <div class="form-group">
+                        <form class="form" action="#" method="POST">
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label">ID-Client</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" disabled value="<?php echo $idclient; ?>"
+                                           id="example-text-input">
+                                </div>
+                            </div>
+							
+							<div class="form-group row">
+                                <label for="example-search-input" class="col-2 col-form-label">Nom</label>
+                                <div class="col-10">
+                                    <input class="form-control" name="name" type="search" value="<?php echo $name; ?>"
+                                           id="example-search-input">
+                                </div>
+                            </div>
+						
+							
+							<div class="form-group row">
+                                <label for="example-search-input" class="col-2 col-form-label">Naissance</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="search" disabled value="<?php echo $naissance; ?>"
+                                           id="example-search-input">
+                                </div>
+                            </div>
+		
+
+                            <div class="form-group row">
+                                <label for="example-email-input" class="col-2 col-form-label">Date d'inscription</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" disabled
+                                           value="<?php echo date("H:i:s | d-m-Y", $date_of_register); ?>"
+                                           id="example-email-input">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="example-tel-input" class="col-2 col-form-label">Abonnement</label>
+
+                                <div class="col-10">
+                                    <select class="form-control" <?php echo($rank == 4 ? "disabled" : ""); ?>
+                                            name="rank">
+                                        <?php
+                                        function selectedS1($check, $grade1)
+                                        {
+                                            if ($check == $grade1) {
+                                                return 'selected="selected"';
+                                            }
+                                        }
+
+                                        ?>
+
+                                        <option value="0" <?php echo selectedS1(0, $grade); ?> >Client LeBonCoin</option>
+                                        <option value="3" <?php echo selectedS1(3, $grade); ?> >Premium LeBonCoin</option>
+                                        <option value="4" <?php echo selectedS1(4, $grade); ?> >Staff LeBonCoin</option>
+                                        <option value="5" <?php echo selectedS1(5, $grade); ?> >PDG LeBonCoin</option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group row">
+                                <label for="example-tel-input" class="col-2 col-form-label">Enchérisseur</label>
+
+                                <div class="col-10">
+                                    <select class="form-control"
+                                            name="enchere">
+                                        <?php
+                                        function selectedS4($check, $enchere4)
+                                        {
+                                            if ($check == $enchere4) {
+                                                return 'selected="selected"';
+                                            }
+                                        }
+
+                                        ?>
+
+                                        <option value="0" <?php echo selectedS1(0, $enchere); ?> >Cette personne ne possède pas l'option</option>
+                                        <option value="1" <?php echo selectedS1(1, $enchere); ?> >Cette personne possède l'option</option>
+                                    </select>
+                                </div>
+                            </div>
+							
+							<div class="form-group row">
+                                <label for="example-tel-input" class="col-2 col-form-label">Premium+</label>
+
+                                <div class="col-10">
+                                    <select class="form-control"
+                                            name="premium">
+                                        <?php
+                                        function selectedS5($check, $premium5)
+                                        {
+                                            if ($check == $premium5) {
+                                                return 'selected="selected"';
+                                            }
+                                        }
+
+                                        ?>
+
+                                        <option value="0" <?php echo selectedS1(0, $premium); ?> >Cette personne ne possède pas le premium+</option>
+                                        <option value="1" <?php echo selectedS1(1, $premium); ?> >Cette personne possède le premium+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="example-password-input" class="col-2 col-form-label">Status du
+                                    compte</label>
+                                <div class="col-10">
+                                    <select class="form-control" name="status">
+                                        <?php
+                                        function selectedS($check, $ban1)
+                                        {
+                                            if ($check == $ban1) {
+                                                return 'selected="selected"';
+                                            }
+                                        }
+
+                                        ?>
+
+                                        <option value="1" <?php echo selectedS(1, $isBan); ?>> Compte vérifié
+                                        </option>
+										<option value="5" <?php echo selectedS(5, $isBan); ?>> Banni</option>
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <center>
+                                <button type="submit" name="edit" class="btn btn-info waves-effect waves-light m-r-10">
+                                    Editer le client
+                                </button>
+                                <br/> <br/>
+                                <button type="submit" name="delete" <?php echo($rank == 4 && $rank == 5 ? "disabled" : ""); ?>
+                                        class="btn btn-danger waves-effect waves-light m-r-10">Supprimer le client
+                                </button>
+                            </center>
+                        </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+	  
+	  
+      </div>
+	  <br>
+  <br>
+  <br>
+  <br>
+
+  </section>
+ 
+
+
+
+<?php
+
+include "../includes/footer.php";
+
+?>

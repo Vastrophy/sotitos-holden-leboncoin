@@ -1,0 +1,149 @@
+<?php
+
+require '../includes/head.php';
+require '../includes/header.php';
+
+if (!isset($_GET['id'])) {
+    header('Location: partenaire.php');
+    exit();
+}
+
+if ($rank < 4) {
+    header('Location: ../account/');
+    exit();
+}
+
+$idUser = mysqli_real_escape_string($con, $_GET['id']);
+$result = mysqli_query($con, "SELECT * FROM `partenaire` WHERE `ID` = '$idUser' LIMIT 1") or die(mysqli_error($con));
+
+while ($userInfo = mysqli_fetch_array($result)) {
+    $TITRE = $userInfo['TITRE'];
+	$URL = $userInfo['URL'];
+    $MESSAGE = $userInfo['MESSAGE'];
+}
+
+
+if ($rank == 4 && $rank == 5) {
+    header('Location: partenaire.php');
+    exit();
+}
+
+
+if (isset($_POST['edit'])) {
+	if (isset($_POST['TITRE'])) {
+        if ($rank == 5 || $rank == 4) {
+		$TITRE = mysqli_real_escape_string($con, $_POST['TITRE']);
+        mysqli_query($con, "UPDATE `partenaire` SET `TITRE` = '$TITRE' WHERE `id` = '$idUser'") or die(mysqli_error($con));
+		$date = time();
+		mysqli_query($con, "INSERT INTO logs (`TYPE`, `DATE`, `STAFF`, `MESSAGE`) VALUES('Staff', '$date', '$prenom $username', 'Modification du partenariat $TITRE')") or die(mysqli_error($con));
+        }
+    }
+	
+	if (isset($_POST['URL'])) {
+        if ($rank == 5 || $rank == 4) {
+		$URL = mysqli_real_escape_string($con, $_POST['URL']);
+        mysqli_query($con, "UPDATE `partenaire` SET `URL` = '$URL' WHERE `id` = '$idUser'") or die(mysqli_error($con));
+        }
+    }
+	
+	if (isset($_POST['MESSAGE'])) {
+        if ($rank == 5 || $rank == 4) {
+		$MESSAGE = mysqli_real_escape_string($con, $_POST['MESSAGE']);
+        mysqli_query($con, "UPDATE `partenaire` SET `MESSAGE` = '$MESSAGE' WHERE `id` = '$idUser'") or die(mysqli_error($con));
+        }
+    }
+
+    echo '<script>
+                                                $(document).ready(function () {
+                                                    toastr["success"]("Vous avez modifié le partenariat.", "Bravo:")
+                                                });
+                                            </script><META http-equiv="refresh" content="2;URL=partenaire.php">';
+}
+?>
+<br>
+<br>
+
+  <section id="services" class="section-bg">
+    <div class="container">
+      <header class="section-header">
+	  	  <center><img src='https://grandparisrp.cf/img/logo.png' width="110"></img></center>
+        <h3>Administration LeBonCoin</h3>
+        <p>Liste de tout les partenaires LeBonCoin de Grand Paris RP</p>
+		<br>
+      </header>
+      <div class="row">
+      
+	        
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap bar-success">
+            <center><h3 class="box-title m-b-0">Partenaire: <?php echo $TITRE; ?></h3>
+                        <p class="text-muted m-b-30">Remplissez le formulaire ci-dessous pour modifier le partenaire</p></center>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <div class="row my-2">
+              <div class="col-md-11">
+                <div class="form-group">
+                        <form class="form" action="#" method="POST">
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-2 col-form-label">Titre de l'annonce</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="text" name="TITRE" value="<?php echo $TITRE; ?>"
+                                           id="example-text-input">
+                                </div>
+                            </div>
+							
+							<div class="form-group row">
+                                <label for="example-search-input" class="col-2 col-form-label">Url de de l'image</label>
+                                <div class="col-10">
+                                    <input class="form-control" name="URL" type="search" value="<?php echo $URL; ?>"
+                                           id="example-search-input">
+                                </div>
+                            </div>
+							
+							<div class="form-group row">
+                                <label for="example-search-input" class="col-2 col-form-label">Message de l'annonce</label>
+                                <div class="col-10">
+                                    <input class="form-control" name="MESSAGE" type="search" value="<?php echo $MESSAGE; ?>"
+                                           id="example-search-input">
+                                </div>
+                            </div>
+
+                            <center>
+                                <button type="submit" name="edit" class="btn btn-info waves-effect waves-light m-r-10">
+                                    Editer le partenariat
+                                </button>
+                                <br/>
+                            </center>
+                        </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+	  
+	  
+      </div>
+	  <br>
+  <br>
+  <br>
+  <br>
+
+  </section>
+ 
+
+
+
+<?php
+
+include "../includes/footer.php";
+
+?>

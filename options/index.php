@@ -1,0 +1,83 @@
+<?php
+
+include "../includes/head.php";
+include "../includes/header.php";
+
+
+?>
+<br>
+<br>
+
+  <section id="services" class="section-bg">
+    <div class="container">
+      <header class="section-header">
+	  	  <center><img src='https://grandparisrp.cf/img/logo.png' width="110"></img></center>
+        <h3>Les Options LeBonCoin</h3>
+        <p>Cette page contient toute les options LeBonCoin de Grand Paris RP</p>
+		<br>
+      </header>
+      <div class="row">
+      
+	  
+	  <table class="table table-hover table-dark">
+  <thead>
+    <tr>
+    <center>  <th scope="col">#</th>
+      <th scope="col">Nom de l'option</th>
+      <th scope="col">Description</th>
+	  <th scope="col">Prix €</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Annonce Premium</td>
+      <td>Cette option vous permet d'afficher votre annonce en première liste.</td>
+      <td>10 000€ /jours</td>
+    </tr>
+	    <tr>
+      <th scope="row">2</th>
+      <td>Assurance</td>
+      <td>L'assurance LeBonCoin vous permet d'éviter les fraudes lors de votre achat si la personne vous arnaque porter plainte et vous serez remboursé.</td>
+      <td>2 000€ /jours</td>
+    </tr>
+	    <tr>
+      <th scope="row">3</th>
+      <td>Onglet Enchère</td>
+      <td>Cette option vous permet de faire des enchères mais en échange nous prenons 5% du prix de vente.</td>
+      <td>5%</td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Reprise Imédiate</td>
+      <td>Cette option vous permet de vendre votre produit en 2 minutes entre 10% et 70% de moins du prix original</td>
+      <td>50%</td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+	  <td>Premium+</td>
+      <td>Cette option vous permet d'obtenir notre premium ainsi que toutes nos options gratuites et un petit grade sur notre site.</td>
+	  <td>50 000€ /mois</td>
+    </tr>
+	 <tr>
+      <th scope="row">6</th>
+	  <td>Pub</td>
+      <td>Cette option vous permet de faire votre pub sur notre site.</td>
+	  <td>100 000€ <br>/15 jours</td>
+    </tr>
+  </tbody>
+</table></center>
+	  
+	  
+      </div>
+    </div>
+  </section>
+ 
+
+
+
+<?php
+
+include "../includes/footer.php";
+
+?>
